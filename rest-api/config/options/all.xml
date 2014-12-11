@@ -25,6 +25,19 @@
     <search:joiner strength="50" apply="constraint" compare="GE" tokenize="word">GE</search:joiner>
     <search:joiner strength="50" apply="constraint" compare="NE" tokenize="word">NE</search:joiner>
   </search:grammar>
+  <search:return-results>false</search:return-results>
+  <search:constraint name="range-bucket">
+    <search:custom facet="true">
+      <search:parse apply="parse" ns="http://marklogic.com/bucket" at="/lib/bucket.xqy" />
+      <search:start-facet apply="start" ns="http://marklogic.com/bucket" at="/lib/bucket.xqy" />
+      <search:finish-facet apply="finish" ns="http://marklogic.com/bucket" at="/lib/bucket.xqy" />
+      <search:bucket name="bottom" lo="0" hi="4"/>
+      <search:bucket name="low" lo="5" hi="8"/>
+      <search:bucket name="mid" lo="9" hi="12"/>
+      <search:bucket name="high" lo="13" hi="16"/>
+      <search:bucket name="top" lo="17" hi="20"/>
+    </search:custom>
+  </search:constraint>
   <search:sort-order direction="descending">
     <search:score/>
   </search:sort-order>
