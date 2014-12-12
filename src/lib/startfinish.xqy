@@ -25,19 +25,13 @@ as item()*
   let $buckets := $constraint/search:custom/search:bucket
   for $bucket in $buckets
   return
-    element bucket {
-      attribute count {
-        xdmp:estimate(
-          cts:search(
-            fn:doc(),
-            cts:and-query((
-              cts:element-range-query(xs:QName("lo"), "<=", xs:int($bucket/@hi)),
-              cts:element-range-query(xs:QName("hi"), ">=", xs:int($bucket/@lo))
-            ))))
-        },
-      $bucket/@lo,
-      $bucket/@hi
-    }
+    xdmp:estimate(
+      cts:search(
+        fn:doc(),
+        cts:and-query((
+          cts:element-range-query(xs:QName("lo"), "<=", xs:int($bucket/@hi)),
+          cts:element-range-query(xs:QName("hi"), ">=", xs:int($bucket/@lo))
+        ))))
 };
 
 declare function bucket:finish(
@@ -51,11 +45,12 @@ as element(search:facet)
 {
   element search:facet {
     attribute name { $constraint/@name },
-    for $range in $start
+    let $buckets := $constraint/search:custom/search:bucket
+    for $bucket at $i in $buckets
     return
-    element search:facet-value {
-      attribute name { $range/@lo || "-" || $range/@hi },
-      $range/@count
-    }
+      element search:facet-value {
+        attribute name { $bucket/@lo || "-" || $bucket/@hi },
+        attribute count { $start[$i] }
+      }
   }
 };
