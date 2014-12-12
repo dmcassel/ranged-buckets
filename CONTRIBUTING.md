@@ -1,6 +1,6 @@
-# Contributing to Roxy
+# Contributing to Ranged Buckets
 
-Roxy welcomes new contributors. This document will guide you
+I welcome contributions to this example code. This document will guide you
 through the process.
 
  - [Question or Problem?](#question)
@@ -10,10 +10,10 @@ through the process.
  
 ## <a name="question"></a> Got a Question or Problem?
 
-If you have questions about how to use Roxy, please direct these to the
-[Roxy Mailing List][mailing list].
+If you have questions about the code in this repo, please file a ticket [here on
+GitHub][issue tracker]. 
 
-## <a name="issue"></a> Found an Issue?
+## <a name="issue"></a> Found an Mistake?
 If you find a bug in the source code or a mistake in the documentation, you can help us by
 submitting an issue to our [GitHub Issue Tracker][issue tracker]. Even better you can submit a Pull Request
 with a fix for the issue you filed.
@@ -25,42 +25,18 @@ project maintainers.
 
 ## <a name="submit"></a> Submission Guidelines
 
-### Submitting an Issue
-Before you submit your issue search the archive, maybe your question was already answered.
-
-If your issue appears to be a bug, and hasn't been reported, open a new issue.
-Help us to maximize the effort we can spend fixing issues and adding new
-features, by not reporting duplicate issues.  Providing the following information will increase the
-chances of your issue being dealt with quickly:
-
-* **Overview of the Issue** - if an error is being thrown a stack trace helps
-* **Motivation for or Use Case** - explain why this is a bug for you
-* **Roxy Version** - is it a named version or from our dev branch
-* **Operating System** - Mac, windows? details help
-* **Suggest a Fix** - if you can't fix the bug yourself, perhaps you can point to what might be
-  causing the problem (line of code or commit)
-
 ### Submitting a Pull Request
 
-#### Fork Roxy
+#### Fork Ranged Buckets
 
-Fork the project [on GitHub](https://github.com/marklogic/roxy/fork) and clone
+Fork the project [on GitHub](https://github.com/marklogic/ranged-buckets/fork) and clone
 your copy.
 
 ```sh
-$ git clone git@github.com:username/roxy.git
-$ cd roxy
-$ git remote add upstream git://github.com/marklogic/roxy.git
+$ git clone git@github.com:username/ranged-buckets.git
+$ cd ranged-buckets
+$ git remote add upstream git://github.com/dmcassel/ranged-buckets.git
 ```
-
-All bug fixes and new features go into the dev branch.
-
-We ask that you open an issue in the [issue tracker][] and get agreement from
-at least one of the project maintainers before you start coding.
-
-Nothing is more frustrating than seeing your hard work go to waste because
-your vision does not align with that of a project maintainer.
-
 
 #### Create a branch for your changes
 
@@ -68,12 +44,12 @@ Okay, so you have decided to fix something. Create a feature branch
 and start hacking:
 
 ```sh
-$ git checkout -b my-feature-branch -t origin/dev
+$ git checkout -b my-feature-branch -t origin/master
 ```
 
 #### Formatting code
 
-We use [.editorconfig][] to configure our editors for proper code formatting. If you don't
+I use [.editorconfig][] to configure our editors for proper code formatting. If you don't
 use a tool that supports editorconfig be sure to configure your editor to use the settings
 equivalent to our .editorconfig file.
 
@@ -86,31 +62,7 @@ $ git config --global user.name "J. Random User"
 $ git config --global user.email "j.random.user@example.com"
 ```
 
-Writing good commit logs is important. A commit log should describe what
-changed and why. Follow these guidelines when writing one:
-
-1. The first line should be 50 characters or less and contain a short
-   description of the change including the Issue number prefixed by a hash (#).
-2. Keep the second line blank.
-3. Wrap all other lines at 72 columns.
-
-A good commit log looks like this:
-
-```
-Fixing Issue #123: make the whatchamajigger work in MarkLogic 8
-
-Body of commit message is a few lines of text, explaining things
-in more detail, possibly giving some background about the issue
-being fixed, etc etc.
-
-The body of the commit message can be several paragraphs, and
-please do proper word-wrap and keep columns shorter than about
-72 characters or so. That way `git log` will show things
-nicely even when it is indented.
-```
-
-The header line should be meaningful; it is what other people see when they
-run `git shortlog` or `git log --oneline`.
+A commit message that explains your change is always good. 
 
 #### Rebase your repo
 
@@ -118,21 +70,14 @@ Use `git rebase` (not `git merge`) to sync your work from time to time.
 
 ```sh
 $ git fetch upstream
-$ git rebase upstream/dev
+$ git rebase upstream/master
 ```
 
 
 #### Test your code
 
-We are working hard to improve Roxy's testing. If you add new functions
-in ruby code then please write unit tests in the deploy/test directory.
-When finished, verify that the self-test works.
-
-```sh
-$ ./ml self-test
-```
-
-Make sure that all tests pass. Please, do not submit patches that fail.
+I don't have any automated tests in this project, but at the very least, you
+should do a search and ensure you get results that look reasonable. 
 
 #### Push your changes
 
@@ -142,7 +87,7 @@ $ git push origin my-feature-branch
 
 #### Submit the pull request
 
-Go to https://github.com/username/roxy and select your feature branch. Click
+Go to https://github.com/username/ranged-buckets and select your feature branch. Click
 the 'Pull Request' button and fill out the form.
 
 Pull requests are usually reviewed within a few days. If you get comments
@@ -164,10 +109,10 @@ from the main (upstream) repository:
     git push origin --delete my-feature-branch
     ```
 
-* Check out the dev branch:
+* Check out the master branch:
 
     ```shell
-    git checkout dev -f
+    git checkout master -f
     ```
 
 * Delete the local branch:
@@ -176,12 +121,11 @@ from the main (upstream) repository:
     git branch -D my-feature-branch
     ```
 
-* Update your dev with the latest upstream version:
+* Update your master with the latest upstream version:
 
     ```shell
-    git pull --ff upstream dev
+    git pull --ff upstream master
     ```
 
-[issue tracker]: https://github.com/marklogic/roxy/issues
-[mailing list]: http://developer.marklogic.com/mailman/listinfo/roxy
+[issue tracker]: https://github.com/dmcassel/ranged-buckets/issues
 [.editorconfig]: http://editorconfig.org/
