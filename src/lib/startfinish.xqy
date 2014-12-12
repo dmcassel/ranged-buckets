@@ -11,7 +11,15 @@ declare function bucket:parse(
   $options as element(search:options))
 as schema-element(cts:query)
 {
-  ()
+  <root>
+  {
+    let $bucket := fn:tokenize($query-elem/search:text, "-")
+    return
+      cts:and-query((
+        cts:element-range-query(xs:QName("lo"), "<=", xs:int($bucket[2])),
+        cts:element-range-query(xs:QName("hi"), ">=", xs:int($bucket[1]))
+      ))
+  }</root>/*
 };
 
 declare function bucket:start(
@@ -30,7 +38,8 @@ as item()*
         fn:doc(),
         cts:and-query((
           cts:element-range-query(xs:QName("lo"), "<=", xs:int($bucket/@hi)),
-          cts:element-range-query(xs:QName("hi"), ">=", xs:int($bucket/@lo))
+          cts:element-range-query(xs:QName("hi"), ">=", xs:int($bucket/@lo)),
+          $query
         ))))
 };
 
