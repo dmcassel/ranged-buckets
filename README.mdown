@@ -34,9 +34,11 @@ values for <hi> and <lo> elements, with the values in the range of [0..20].
 
 ### Custom Constraint
 
-You can execute the custom constraint through the REST API using this URL:
+You can execute the custom constraint through the REST API using these URLs:
 
-    http://localhost:8060/v1/search?options=all
+    http://localhost:8060/v1/search?options=startfinish.xml
+    http://localhost:8060/v1/search?options=finish.xml
+    http://localhost:8060/v1/search?options=lo.xml
 
 Note that you may need to change the port if you configured your app server
 differently. 
