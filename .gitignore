@@ -1,0 +1,4 @@
+udf/*.o
+udf/*.zip
+udf/manifest.xml
+udf/*.dylib
