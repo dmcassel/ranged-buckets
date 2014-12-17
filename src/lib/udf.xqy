@@ -45,7 +45,9 @@ as item()*
         fn:count($buckets),
         $buckets ! (./@lo, ./@hi)
       )
-    )
+    ),
+    (),
+    $query
   )
 };
 
