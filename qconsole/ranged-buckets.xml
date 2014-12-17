@@ -1,6 +1,6 @@
-<export><workspace name="range buckets"><query name="generate data" focus="true" active="true" mode="xquery">xquery version "1.0-ml";
+<export><workspace name="range buckets"><query name="generate data" focus="false" active="true" mode="xquery">xquery version "1.0-ml";
 
-for $i in (1 to 10000)
+for $i in (1 to 100000)
 return 
   xdmp:document-insert(
     "/" || $i || ".xml",
@@ -15,4 +15,22 @@ return
       }
       &lt;id&gt;{$i}&lt;/id&gt;
     &lt;/doc&gt;
-  )</query></workspace></export>
+  )</query><query name="run plugin" focus="false" active="true" mode="xquery">xquery version "1.0-ml";
+
+let $m := 
+cts:aggregate(
+  "davidcassel.rangedbucket/rangedbucket", 
+  "ranged-bucket", 
+  (
+    cts:element-reference(xs:QName("lo"), "type=int"),
+    cts:element-reference(xs:QName("hi"), "type=int")
+  ),
+  (5, 0, 4, 5, 8, 9, 12, 13, 16, 17, 20)
+)
+return map:get($m, "0-4")</query><query name="install plugin" focus="true" active="true" mode="xquery">xquery version "1.0-ml";
+import module namespace plugin = "http://marklogic.com/extension/plugin"
+  at "MarkLogic/plugin/plugin.xqy";
+  
+plugin:install-from-zip("davidcassel.rangedbucket",
+  xdmp:document-get("/Users/dcassel/git/range-buckets/udf/rangedbucket.zip")/node())
+</query></workspace></export>
